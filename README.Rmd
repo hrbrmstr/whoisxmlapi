@@ -1,0 +1,70 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+whoisxmlapi is an R package to interface with the [WhoisXMLAPI](https://www.whoisxmlapi.com/) service
+
+The package expects the WhoisXMLAPI username and password to be in the `WHOISXMLAPI_USERNAME` and `WHOISXMLAPI_PASSWORD` variables, respectively.
+
+The only functions curently available are retrieving a WHOIS record and looking up account information. If you have access to the other WhoisXMLAPI services please shoot me a note to help collaborate on this package.
+
+The following functions are implemented:
+
+- `account_balance`:	Query the account balance for the account associated with 'WHOISXMLAPI_USERNAME'
+- `whois`:	Retrieve WHOIS details for one or more domain names
+- `whoisxmlapi_password`:	Get or set WHOISXMLAPI_PASSWORD value
+- `whoisxmlapi_username`:	Get or set WHOISXMLAPI_USERNAME value
+
+### News
+
+- Version 0.0.0.9000 released
+
+### Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/whoisxmlapi")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+options(width=120)
+```
+
+### Usage
+
+```{r}
+library(whoisxmlapi)
+
+# current verison
+packageVersion("whoisxmlapi")
+
+dplyr::glimpse(account_balance())
+
+```
+
+### Test Results
+
+```{r}
+library(whoisxmlapi)
+library(testthat)
+
+date()
+
+test_dir("tests/")
+```
+
+### Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+By participating in this project you agree to abide by its terms.
