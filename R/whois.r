@@ -1,23 +1,37 @@
 #' Retrieve WHOIS details for one or more domain names
 #'
+#' @md
 #' @param domains character vector of domain names
-#' @return nested list of WHOIS information for each domain
-#' @references \url{https://www.whoisxmlapi.com/whois-api-doc.php} and
-#'             \url{https://www.whoisxmlapi.com/documentation/whoisapi_documentation/index.html}
+#' @param api_key see [whoisxmlapi_key()]
+#' @references <https://whoisapi.whoisxmlapi.com/docs>
 #' @export
-whois <- function(domains) {
-  lapply(domains, lookup_domain)
+whois <- function(domains, api_key = whoisxmlapi_key()) {
+
+  res <- lapply(domains, lookup_domain, api_key = api_key)
+
+  # out <- do.call(rbind.data.frame, res)
+  #
+  # class(out) <- c("tbl_df", "tbl", "data.frame")
+
+  res
+
 }
 
-lookup_domain <- function(domain) {
+lookup_domain <- function(domain, api_key) {
 
-  res <- POST("https://www.whoisxmlapi.com/whoisserver/WhoisService",
-              query=list(domainName=domain,
-                         username=whoisxmlapi_username(),
-                         password=whoisxmlapi_password()))
+  httr::GET(
+    url = "https://www.whoisxmlapi.com/whoisserver/WhoisService",
+    query = list(
+      domainName = domain,
+      outputFormat = "JSON",
+      apiKey = api_key
+    )
+  ) -> res
 
-  stop_for_status(res)
+  httr::stop_for_status(res)
 
-  XML::xmlToList(content(res, as="parsed"))
+  out <- httr::content(res, as = "text")
+
+  jsonlite::fromJSON(out)
 
 }

@@ -1,10 +1,17 @@
 Package: whoisxmlapi
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
+Title: Query 'IP' and Domain Information from 'WhoisXMLAPI'
+Version: 0.1.0
 Authors@R: c(person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre")))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.0.0)
+Description: The 'WhoisXMLAPI' (<https://whoisxmlapi.com/>) service provides
+    current and historical metadata on 'IP' addresses and 'WHOIS' records 
+    for internet domain names. Methods are provided to query and process
+    query results.
+Depends: R (>= 3.2.0)
+Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: true
 Suggests: testthat
-Imports: httr, jsonlite, xml2, XML
+Imports: 
+    httr,
+    jsonlite
+RoxygenNote: 6.1.1

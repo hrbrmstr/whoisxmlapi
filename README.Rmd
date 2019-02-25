@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: rmarkdown::github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -9,39 +7,41 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
+  comment = "##",
+  fig.path = "README-",
+  message = FALSE, 
+  warning = FALSE,
+  fig.retina = 2
 )
+options(width=120)
 ```
 
-whoisxmlapi is an R package to interface with the [WhoisXMLAPI](https://www.whoisxmlapi.com/) service
+# whoisxmlapi
 
-The package expects the WhoisXMLAPI username and password to be in the `WHOISXMLAPI_USERNAME` and `WHOISXMLAPI_PASSWORD` variables, respectively.
+Query 'IP' and Domain Information from 'WhoisXMLAPI'
 
-The only functions curently available are retrieving a WHOIS record and looking up account information. If you have access to the other WhoisXMLAPI services please shoot me a note to help collaborate on this package.
+## Description
+
+The 'WhoisXMLAPI' (<https://whoisxmlapi.com/>) service provides
+current and historical metadata on 'IP' addresses and 'WHOIS' records 
+for internet domain names. Methods are provided to query and process
+query results.
+
+## What's Inside the Tin?
 
 The following functions are implemented:
 
-- `account_balance`:	Query the account balance for the account associated with 'WHOISXMLAPI_USERNAME'
+- `account_balance`:	Query the account balance
 - `whois`:	Retrieve WHOIS details for one or more domain names
-- `whoisxmlapi_password`:	Get or set WHOISXMLAPI_PASSWORD value
-- `whoisxmlapi_username`:	Get or set WHOISXMLAPI_USERNAME value
+- `whoisxmlapi_key`:	Get or set WHOISXMLAPI_KEY
 
-### News
-
-- Version 0.0.0.9000 released
-
-### Installation
+## Installation
 
 ```{r eval=FALSE}
 devtools::install_github("hrbrmstr/whoisxmlapi")
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-options(width=120)
-```
-
-### Usage
+## Usage
 
 ```{r}
 library(whoisxmlapi)
@@ -49,22 +49,18 @@ library(whoisxmlapi)
 # current verison
 packageVersion("whoisxmlapi")
 
-dplyr::glimpse(account_balance())
-
 ```
 
-### Test Results
-
 ```{r}
-library(whoisxmlapi)
-library(testthat)
+dplyr::glimpse(account_balance())
+```
 
-date()
+## `whoisxmlapi` Metrics
 
-test_dir("tests/")
+```{r cloc, echo=FALSE}
+cloc::cloc_pkg_md()
 ```
 
 ### Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
-By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

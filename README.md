@@ -1,81 +1,61 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-whoisxmlapi is an R package to interface with the [WhoisXMLAPI](https://www.whoisxmlapi.com/) service
 
-The package expects the WhoisXMLAPI username and password to be in the `WHOISXMLAPI_USERNAME` and `WHOISXMLAPI_PASSWORD` variables, respectively.
+# whoisxmlapi
 
-The only functions curently available are retrieving a WHOIS record and looking up account information. If you have access to the other WhoisXMLAPI services please shoot me a note to help collaborate on this package.
+Query ‘IP’ and Domain Information from ‘WhoisXMLAPI’
+
+## Description
+
+The ‘WhoisXMLAPI’ (<https://whoisxmlapi.com/>) service provides current
+and historical metadata on ‘IP’ addresses and ‘WHOIS’ records for
+internet domain names. Methods are provided to query and process query
+results.
+
+## What’s Inside the Tin?
 
 The following functions are implemented:
 
--   `account_balance`: Query the account balance for the account associated with 'WHOISXMLAPI\_USERNAME'
--   `whois`: Retrieve WHOIS details for one or more domain names
--   `whoisxmlapi_password`: Get or set WHOISXMLAPI\_PASSWORD value
--   `whoisxmlapi_username`: Get or set WHOISXMLAPI\_USERNAME value
+  - `account_balance`: Query the account balance
+  - `whois`: Retrieve WHOIS details for one or more domain names
+  - `whoisxmlapi_key`: Get or set WHOISXMLAPI\_KEY
 
-### News
-
--   Version 0.0.0.9000 released
-
-### Installation
+## Installation
 
 ``` r
 devtools::install_github("hrbrmstr/whoisxmlapi")
 ```
 
-### Usage
+## Usage
 
 ``` r
 library(whoisxmlapi)
 
 # current verison
 packageVersion("whoisxmlapi")
-#> [1] '0.0.0.9000'
-
-dplyr::glimpse(account_balance())
-#> Observations: 1
-#> Variables:
-#> $ balance                       (dbl) 499
-#> $ reserve                       (dbl) 500
-#> $ monthly_balance               (dbl) 0
-#> $ monthly_reserve               (dbl) 0
-#> $ reverse_whois_balance         (dbl) 0
-#> $ reverse_whois_reserve         (dbl) 0
-#> $ reverse_whois_monthly_balance (dbl) 0
-#> $ reverse_whois_monthly_reserve (dbl) 0
-#> $ ba_query_balance              (dbl) NA
-#> $ ba_query_reserve              (dbl) NA
-#> $ ra_query_balance              (dbl) NA
-#> $ ra_query_reserve              (dbl) NA
-#> $ ds_query_balance              (dbl) NA
-#> $ ds_query_reserve              (dbl) NA
-#> $ reverse_ip_balance            (dbl) NA
-#> $ reverse_ip_reserve            (dbl) NA
-#> $ reverse_ip_monthly_balance    (dbl) NA
-#> $ reverse_ip_monthly_reserve    (dbl) NA
+## [1] '0.1.0'
 ```
-
-### Test Results
 
 ``` r
-library(whoisxmlapi)
-library(testthat)
-
-date()
-#> [1] "Sat Aug  8 20:07:53 2015"
-
-test_dir("tests/")
-#> 
-#> Attaching package: 'whoisxmapi'
-#> 
-#> The following objects are masked from 'package:whoisxmlapi':
-#> 
-#>     account_balance, whoisxmlapi_password, whoisxmlapi_username
-#> testthat results ========================================================================================================
-#> OK: 0 SKIPPED: 0 FAILED: 0
-#> 
-#> DONE
+dplyr::glimpse(account_balance())
+## List of 1
+##  $ data:'data.frame':    9 obs. of  3 variables:
+##   ..$ product_id: int [1:9] 1 7 8 9 10 11 14 20 23
+##   ..$ product   :'data.frame':   9 obs. of  2 variables:
+##   .. ..$ id  : int [1:9] 1 7 8 9 10 11 14 20 23
+##   .. ..$ name: chr [1:9] "WHOIS API" "Email Verification API" "IP Geolocation API" "Reverse IP/DNS API" ...
+##   ..$ credits   : int [1:9] 494 1000 1000 250 250 250 100 100 1000
 ```
+
+## `whoisxmlapi` Metrics
+
+| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
+| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
+| R    |        6 | 0.86 |  52 | 0.79 |          25 | 0.56 |       40 | 0.56 |
+| Rmd  |        1 | 0.14 |  14 | 0.21 |          20 | 0.44 |       32 | 0.44 |
 
 ### Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](CONDUCT.md). By participating in this project you agree to
+abide by its terms.
